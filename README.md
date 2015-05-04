@@ -1,6 +1,6 @@
 # NAME
 
-Dist::Zilla::Plugin::OurPkgVersion - no line insertion and does Package version with our
+Dist::Zilla::Plugin::OurPkgVersion - No line insertion and does Package version with our
 
 # VERSION
 
