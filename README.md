@@ -125,21 +125,22 @@ feature.
 
 # CONTRIBUTORS
 
-- Alexandr Ciornii <alexchorny@gmail.com>
-- Alexei Znamensky <russoz@cpan.org>
-- Christian Walde <walde.christian@googlemail.com>
-- Christopher J. Madsen <perl@cjmweb.net>
-- David Golden <dagolden@cpan.org>
-- Graham Ollis <perl@wdlabs.com>
+- Alexandr Ciornii &lt;alexchorny@gmail.com>
+- Alexei Znamensky &lt;russoz@cpan.org>
+- Christian Walde &lt;walde.christian@googlemail.com>
+- Christopher J. Madsen &lt;perl@cjmweb.net>
+- David Golden &lt;dagolden@cpan.org>
+- Graham Ollis &lt;perl@wdlabs.com>
+- Graham Ollis &lt;plicease@cpan.org>
 
 # AUTHORS
 
-- Caleb Cushing <xenoterracide@gmail.com>
-- Grahan Ollis <plicease@cpan.org>
+- Caleb Cushing &lt;xenoterracide@gmail.com>
+- Grahan Ollis &lt;plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2015 by Caleb Cushing.
+This software is Copyright (c) 2016 by Caleb Cushing.
 
 This is free software, licensed under:
 
