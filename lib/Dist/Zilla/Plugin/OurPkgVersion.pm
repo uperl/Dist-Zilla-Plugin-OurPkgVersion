@@ -11,6 +11,7 @@ with (
 	'Dist::Zilla::Role::FileFinderUser' => {
 		default_finders => [ ':InstallModules', ':ExecFiles' ],
 	},
+	'Dist::Zilla::Role::PPI',
 );
 
 use PPI;
@@ -37,15 +38,7 @@ sub munge_file {
 	confess 'invalid characters in version'
 		unless LaxVersionStr->check( $version );
 
-	my $content = $file->content;
-
-	my $doc = PPI::Document->new(\$content)
-		or $self->log( 'Skipping: "'
-			. $file->name
-			.  '" error with PPI: '
-			. PPI::Document->errstr
-			)
-			;
+	my $doc = $self->ppi_document_for_file($file);
 
 	return unless defined $doc;
 

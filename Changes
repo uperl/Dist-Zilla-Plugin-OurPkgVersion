@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
+  - Use Dist::Zilla::Role::PPI to avoid reparsing documents (new GH #1)
 
 0.06      2015-05-04
   - Use [Test::ReportPrereqs] instead of [ReportVersions::Tiny] to remove
