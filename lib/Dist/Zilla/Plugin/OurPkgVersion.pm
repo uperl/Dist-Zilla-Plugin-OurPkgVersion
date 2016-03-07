@@ -72,7 +72,7 @@ sub munge_file {
 						. qq{'; $comment}
 						;
 				$_->set_content("$code");
-				$file->content( $doc->serialize );
+				$self->save_ppi_document_to_file( $doc, $file);
 				$munged_version++;
 			}
 		}
