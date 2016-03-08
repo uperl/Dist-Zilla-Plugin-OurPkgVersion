@@ -72,13 +72,13 @@ sub munge_file {
 						. qq{'; $comment}
 						;
 				$_->set_content("$code");
-				$self->save_ppi_document_to_file( $doc, $file);
 				$munged_version++;
 			}
 		}
 	}
 
 	if ( $munged_version ) {
+		$self->save_ppi_document_to_file( $doc, $file);
 		$self->log_debug([ 'adding $VERSION assignment to %s', $file->name ]);
 	}
 	else {
