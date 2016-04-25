@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
 
+0.08      2016-04-24
+  - Dist::Zilla 5.x / 6.x and future 7.x compatability
+
 0.07      2016-03-07
   - Use Dist::Zilla::Role::PPI to avoid reparsing documents (new GH #1)
 
