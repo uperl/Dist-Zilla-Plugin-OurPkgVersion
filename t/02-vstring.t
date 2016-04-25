@@ -4,12 +4,13 @@ use warnings;
 use Test::More;
 use Test::DZil;
 use Test::Version qw( version_ok );
+use Path::Class qw( dir );
 
 my $tzil = Builder->from_config({ dist_root => 'corpus/vDZT' });
 
 $tzil->build;
 
-version_ok( $tzil->tempdir->file('build/lib/vDZT.pm'));
+version_ok( dir($tzil->tempdir)->file('build/lib/vDZT.pm'));
 
 my $lib = $tzil->slurp_file('build/lib/vDZT.pm');
 

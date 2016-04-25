@@ -125,18 +125,18 @@ feature.
 
 # CONTRIBUTORS
 
-- Alexandr Ciornii &lt;alexchorny@gmail.com>
-- Alexei Znamensky &lt;russoz@cpan.org>
-- Christian Walde &lt;walde.christian@googlemail.com>
-- Christopher J. Madsen &lt;perl@cjmweb.net>
-- David Golden &lt;dagolden@cpan.org>
-- Graham Ollis &lt;perl@wdlabs.com>
-- Graham Ollis &lt;plicease@cpan.org>
+- Alexandr Ciornii <alexchorny@gmail.com>
+- Alexei Znamensky <russoz@cpan.org>
+- Christian Walde <walde.christian@googlemail.com>
+- Christopher J. Madsen <perl@cjmweb.net>
+- David Golden <dagolden@cpan.org>
+- Graham Ollis <perl@wdlabs.com>
+- Graham Ollis <plicease@cpan.org>
 
 # AUTHORS
 
-- Caleb Cushing &lt;xenoterracide@gmail.com>
-- Grahan Ollis &lt;plicease@cpan.org>
+- Caleb Cushing <xenoterracide@gmail.com>
+- Grahan Ollis <plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
