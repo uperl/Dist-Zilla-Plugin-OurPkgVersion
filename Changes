@@ -2,6 +2,11 @@ Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
 
+0.09_01   2016-06-20
+  - Also accept perltidy "special side comments" syntax.  Please note
+    that things may break if your dist has the pattern '## VERSION'
+    in a .pm file (iansealy GH# 2)
+
 0.08      2016-04-24
   - Dist::Zilla 5.x / 6.x and future 7.x compatability
 

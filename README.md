@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::OurPkgVersion - No line insertion and does Package version 
 
 # VERSION
 
-version 0.08
+version 0.09\_01
 
 # SYNOPSIS
 
@@ -144,6 +144,7 @@ feature.
 - David Golden <dagolden@cpan.org>
 - Graham Ollis <perl@wdlabs.com>
 - Graham Ollis <plicease@cpan.org>
+- Ian Sealy <git@iansealy.com>
 
 # AUTHORS
 
