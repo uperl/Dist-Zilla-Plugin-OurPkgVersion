@@ -14,6 +14,7 @@ with (
 	'Dist::Zilla::Role::PPI',
 );
 
+use Carp qw( confess );
 use PPI;
 use MooseX::Types::Perl qw( LaxVersionStr );
 use namespace::autoclean;
@@ -36,7 +37,7 @@ sub munge_file {
 	my $version = $self->zilla->version;
 
 	confess 'invalid characters in version'
-		unless LaxVersionStr->check( $version );
+		unless LaxVersionStr->check( $version );  ## no critic (Modules::RequireExplicitInclusion)
 
 	my $doc = $self->ppi_document_for_file($file);
 
