@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::OurPkgVersion - No line insertion and does Package version 
 
 # VERSION
 
-version 0.09\_01
+version 0.10
 
 # SYNOPSIS
 

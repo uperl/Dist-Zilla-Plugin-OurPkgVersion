@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
 
+0.10      2016-06-21
+  - Production release identical to 0.09_01
+
 0.09_01   2016-06-20
   - Also accept perltidy "special side comments" syntax.  Please note
     that things may break if your dist has the pattern '## VERSION'
