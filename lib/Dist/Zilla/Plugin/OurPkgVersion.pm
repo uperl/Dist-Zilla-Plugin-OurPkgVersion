@@ -9,7 +9,14 @@ use Moose;
 with (
 	'Dist::Zilla::Role::FileMunger',
 	'Dist::Zilla::Role::FileFinderUser' => {
-		default_finders => [ ':InstallModules', ':ExecFiles' ],
+        default_finders => [
+            ':InstallModules',
+            (
+                eval { Dist::Zilla::Dist::Builder->VERSION('5.038'); 1 }
+                    ? ':PerlExecFiles'
+                    : ':ExecFiles'
+            )
+        ],
 	},
 	'Dist::Zilla::Role::PPI',
 );
@@ -215,6 +222,14 @@ the number of files to search to only be modules and executables.
 =item munge_file
 
 tells which files to munge, see L<Dist::Zilla::Role::FileMunger>
+
+=item finder
+
+Override the default L<FileFinder|Dist::Zilla::Role::FileFinder> for
+finding files to check and update. The default value is C<:InstallModules>
+and C<:PerlExecFiles> (when available; otherwise C<:ExecFiles>)
+-- see also L<Dist::Zilla::Plugin::ExecDir>, to make sure the script
+files are properly marked as executables for the installer.
 
 =back
 
