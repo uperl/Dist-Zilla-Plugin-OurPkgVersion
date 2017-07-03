@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
+
+0.11      2017-07-02
   - use :PerlExecFiles filefinder whenever possible
 
 0.10      2016-06-21
