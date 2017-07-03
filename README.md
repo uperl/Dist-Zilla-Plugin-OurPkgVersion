@@ -126,10 +126,18 @@ becomes
 
     tells which files to munge, see [Dist::Zilla::Role::FileMunger](https://metacpan.org/pod/Dist::Zilla::Role::FileMunger)
 
+- finder
+
+    Override the default [FileFinder](https://metacpan.org/pod/Dist::Zilla::Role::FileFinder) for
+    finding files to check and update. The default value is `:InstallModules`
+    and `:PerlExecFiles` (when available; otherwise `:ExecFiles`)
+    \-- see also [Dist::Zilla::Plugin::ExecDir](https://metacpan.org/pod/Dist::Zilla::Plugin::ExecDir), to make sure the script
+    files are properly marked as executables for the installer.
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
-https://github.com/plicease/dist-zilla-plugin-ourpkgversion/issues
+[https://github.com/plicease/dist-zilla-plugin-ourpkgversion/issues](https://github.com/plicease/dist-zilla-plugin-ourpkgversion/issues)
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
@@ -145,6 +153,7 @@ feature.
 - Graham Ollis <perl@wdlabs.com>
 - Graham Ollis <plicease@cpan.org>
 - Ian Sealy <git@iansealy.com>
+- Stephan Loyd <stephanloyd9@gmail.com>
 
 # AUTHORS
 
@@ -153,7 +162,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2016 by Caleb Cushing.
+This software is Copyright (c) 2017 by Caleb Cushing.
 
 This is free software, licensed under:
 
