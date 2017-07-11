@@ -26,6 +26,12 @@ use PPI;
 use MooseX::Types::Perl qw( LaxVersionStr );
 use namespace::autoclean;
 
+has underscore_eval_version => (
+  is      => 'ro',
+  isa     => 'Int',
+  default => 0,
+);
+
 sub munge_files {
 	my $self = shift;
 
@@ -79,6 +85,9 @@ sub munge_file {
 						. $version
 						. qq{'; $comment}
 						;
+				if ( $version =~ /_/ && $self->underscore_eval_version ) {
+					$code.= "\$VERSION = eval \$VERSION;\n";
+				}
 				$_->set_content("$code");
 				$munged_version++;
 			}
@@ -230,6 +239,22 @@ finding files to check and update. The default value is C<:InstallModules>
 and C<:PerlExecFiles> (when available; otherwise C<:ExecFiles>)
 -- see also L<Dist::Zilla::Plugin::ExecDir>, to make sure the script
 files are properly marked as executables for the installer.
+
+=back
+
+=head1 PROPERTIES
+
+=over
+
+=item underscore_eval_version
+
+For version numbers that have an underscore in them, add this line
+immediately after the our version assignment:
+
+ $VERSION = eval $VERSION;
+
+This is arguably the correct thing to do, but changes the line numbering
+of the generated Perl module or source, and thus optional.
 
 =back
 

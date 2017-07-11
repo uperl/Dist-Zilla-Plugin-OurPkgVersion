@@ -134,6 +134,18 @@ becomes
     \-- see also [Dist::Zilla::Plugin::ExecDir](https://metacpan.org/pod/Dist::Zilla::Plugin::ExecDir), to make sure the script
     files are properly marked as executables for the installer.
 
+# PROPERTIES
+
+- underscore\_eval\_version
+
+    For version numbers that have an underscore in them, add this line
+    immediately after the our version assignment:
+
+        $VERSION = eval $VERSION;
+
+    This is arguably the correct thing to do, but changes the line numbering
+    of the generated Perl module or source, and thus optional.
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
