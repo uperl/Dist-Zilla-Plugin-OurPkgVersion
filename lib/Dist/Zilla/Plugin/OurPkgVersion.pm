@@ -32,10 +32,19 @@ has underscore_eval_version => (
   default => 0,
 );
 
+has skip_main_module => (
+  is      => 'ro',
+  isa     => 'Int',
+  default => 0,
+);
+
 sub munge_files {
 	my $self = shift;
 
-	$self->munge_file($_) for @{ $self->found_files };
+	$self->munge_file($_) for
+		grep { $self->skip_main_module ? $_->name ne $self->zilla->main_module->name : 1 }
+		@{ $self->found_files };
+
 	return;
 }
 
