@@ -265,6 +265,12 @@ immediately after the our version assignment:
 This is arguably the correct thing to do, but changes the line numbering
 of the generated Perl module or source, and thus optional.
 
+=item skip_main_module
+
+Set to true to ignore the main module in the distribution. This prevents
+a warning when using L<Dist::Zilla::Plugin::VersionFromMainModule> to
+obtain the version number instead of the C<dist.ini> file.
+
 =back
 
 =cut
