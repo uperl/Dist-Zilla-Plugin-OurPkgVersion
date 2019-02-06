@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
+
+0.14      2019-02-06
   - Fix bug where nw underscore_eval_version may fail
   - add skip_main_module option for compatibility with VersionFromMainModule
 

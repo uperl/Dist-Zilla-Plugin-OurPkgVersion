@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::OurPkgVersion - No line insertion and does Package version 
 
 # VERSION
 
-version 0.12
+version 0.14
 
 # SYNOPSIS
 
@@ -164,15 +164,16 @@ feature.
 # CONTRIBUTORS
 
 - Alexandr Ciornii <alexchorny@gmail.com>
+- Stephan Loyd <stephanloyd9@gmail.com>
 - Alexei Znamensky <russoz@cpan.org>
 - Christian Walde <walde.christian@googlemail.com>
 - Christopher J. Madsen <perl@cjmweb.net>
 - David Golden <dagolden@cpan.org>
 - Graham Ollis <perl@wdlabs.com>
 - Graham Ollis <plicease@cpan.org>
+- Graham✈️✈️ <plicease@cpan.org>
 - Ian Sealy <git@iansealy.com>
 - Michael Jemmeson <mjemmeson@cpan.org>
-- Stephan Loyd <stephanloyd9@gmail.com>
 
 # AUTHORS
 
