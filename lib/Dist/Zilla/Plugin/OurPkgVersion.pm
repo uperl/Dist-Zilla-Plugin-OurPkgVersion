@@ -115,6 +115,8 @@ __PACKAGE__->meta->make_immutable;
 1;
 # ABSTRACT: No line insertion and does Package version with our
 
+=encoding UTF-8
+
 =head1 SYNOPSIS
 
 in dist.ini
