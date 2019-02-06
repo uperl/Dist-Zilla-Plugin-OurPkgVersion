@@ -146,6 +146,12 @@ becomes
     This is arguably the correct thing to do, but changes the line numbering
     of the generated Perl module or source, and thus optional.
 
+- skip\_main\_module
+
+    Set to true to ignore the main module in the distribution. This prevents
+    a warning when using [Dist::Zilla::Plugin::VersionFromMainModule](https://metacpan.org/pod/Dist::Zilla::Plugin::VersionFromMainModule) to
+    obtain the version number instead of the `dist.ini` file.
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
@@ -165,6 +171,7 @@ feature.
 - Graham Ollis <perl@wdlabs.com>
 - Graham Ollis <plicease@cpan.org>
 - Ian Sealy <git@iansealy.com>
+- Michael Jemmeson <mjemmeson@cpan.org>
 - Stephan Loyd <stephanloyd9@gmail.com>
 
 # AUTHORS
@@ -174,7 +181,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2017 by Caleb Cushing.
+This software is Copyright (c) 2019 by Caleb Cushing.
 
 This is free software, licensed under:
 
