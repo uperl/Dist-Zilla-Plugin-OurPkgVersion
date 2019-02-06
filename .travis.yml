@@ -1,20 +1,31 @@
-language: perl
-sudo: false
+language: minimal
+dist: xenial
+services:
+  - docker
+
+before_install:
+  - curl https://raw.githubusercontent.com/plicease/cip/master/bin/travis-bootstrap | bash
+  - cip before-install
 
 install:
-  - perlbrew list
-  - cpanm Dist::Zilla
-  - dzil authordeps --missing | cpanm -n
-  - dzil listdeps --missing | cpanm -n
-
-perl:
-  - "5.14"
-  - "5.16"
-  - "5.18"
-  - "5.20"
-  - "5.22"
-  - "5.24"
-  - "5.26"
+  - cip diag
+  - cip install
 
 script:
-  - dzil test -v
+  - cip script
+
+jobs:
+  include:
+    - env: CIP_TAG=5.29
+    - env: CIP_TAG=5.28 CIP_ENV=AUTHOR_TESTING=1
+    - env: CIP_TAG=5.26
+    - env: CIP_TAG=5.24
+    - env: CIP_TAG=5.22
+    - env: CIP_TAG=5.20
+    - env: CIP_TAG=5.18
+    - env: CIP_TAG=5.16
+    - env: CIP_TAG=5.14
+
+cache:
+  directories:
+    - "$HOME/.cip"
