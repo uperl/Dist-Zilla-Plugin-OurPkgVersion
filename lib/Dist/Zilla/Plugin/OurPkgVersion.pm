@@ -11,11 +11,7 @@ with (
 	'Dist::Zilla::Role::FileFinderUser' => {
         default_finders => [
             ':InstallModules',
-            (
-                eval { Dist::Zilla::Dist::Builder->VERSION('5.038'); 1 }
-                    ? ':PerlExecFiles'
-                    : ':ExecFiles'
-            )
+            ':PerlExecFiles',
         ],
 	},
 	'Dist::Zilla::Role::PPI',
