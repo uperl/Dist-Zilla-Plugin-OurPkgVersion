@@ -4,4 +4,4 @@ set -ex
 
 cip sudo apt-get update
 cip sudo apt-get -y install git
-cip exec cpanm Test::Perl::Critic Test::EOL Test::MinimumVersion Test::Mojibake Test::Pod::Coverage Test::Spelling Test::Pod Pod::Coverage::TrustPod
+cip exec cpanm -n Test::Perl::Critic Test::EOL Test::MinimumVersion Test::Mojibake Test::Pod::Coverage Test::Spelling Test::Pod Pod::Coverage::TrustPod
