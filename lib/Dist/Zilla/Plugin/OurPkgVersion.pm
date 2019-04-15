@@ -34,6 +34,12 @@ has skip_main_module => (
   default => 0,
 );
 
+has overwrite => (
+  is      => 'ro',
+  isa     => 'Int',
+  default => 0,
+);
+
 sub munge_files {
 	my $self = shift;
 
@@ -61,12 +67,13 @@ sub munge_file {
 
 	return unless defined $doc;
 
+	$doc->index_locations if $self->overwrite; # optimize calls to check line numbers
 	my $comments = $doc->find('PPI::Token::Comment');
 
 	my $version_regex
 		= q{
                   ^
-                  (\s*)              # capture all whitespace before comment
+                  (\s*)              # capture leading whitespace for whole-line comments
                   (
                     \#\#?\s*VERSION  # capture # VERSION or ## VERSION
                     \b               # and ensure it ends on a word boundary
@@ -90,10 +97,24 @@ sub munge_file {
 						. $version
 						. qq{'; $comment}
 						;
-				if ( $version =~ /_/ && $self->underscore_eval_version ) {
-					$code.= "\$VERSION = eval \$VERSION;\n";
+				# If the comment is not a whole-line comment, and if the user wants to overwrite
+				# existing "our $VERSION=...;", then find the other tokens from this line, looking
+				# for our $VERSION = $VALUE.  If found, edit only the VALUE.
+				if ( $self->overwrite && !$_->line ) {
+					my $line_no= $_->line_number;
+					my $nodes= $doc->find( sub { $_[1]->line_number == $line_no } );
+					my $version_value_token= $nodes && $self->_identify_version_value_token(@$nodes);
+					if ( $version_value_token ) {
+						$version_value_token->set_content(qq{'$version'});
+						$code= $ws . $comment;
+						$munged_version++;
+					}
 				}
-				$_->set_content("$code");
+				if ( $version =~ /_/ && $self->underscore_eval_version ) {
+					my $eval= "\$VERSION = eval \$VERSION;";
+					$code.= $_->line? "$eval\n" : "\n$eval";
+				}
+				$_->set_content($code);
 				$munged_version++;
 			}
 		}
@@ -111,6 +132,32 @@ sub munge_file {
 	}
 	return;
 }
+
+sub _identify_version_value_token {
+	my $self= shift;
+	my $val_tok;
+	my @want= ('our', '$VERSION', '=', undef, ';');
+	my $i= 0;
+	for (@_) {
+		next if $_->isa('PPI::Token::Whitespace');
+		# If the next thing we want is "undef", this is where we capture the value token.
+		if (!defined $want[$i]) {
+			$val_tok= $_;
+			++$i;
+		}
+		# Else if the token matches the current step in the sequence, advance the sequence
+		# If sequence completely matched, return.
+		elsif ($want[$i] eq $_->content) {
+			++$i;
+			return $val_tok unless $i < $#want;
+		}
+		# A mismatch restarts the search
+		elsif ($i) {
+			$i= 0;
+		}
+	}
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
 # ABSTRACT: No line insertion and does Package version with our

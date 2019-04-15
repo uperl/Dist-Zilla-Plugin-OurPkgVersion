@@ -21,6 +21,7 @@ my $elib_0 = <<'END LIB8';
 use strict;
 use warnings;
 package oDZT;
+# ABSTRACT: lots of false leads here
 <<END
 # VERSION
 END
@@ -31,7 +32,7 @@ END
 
 =cut
 
-our $VERSION= '0.1.0'; # VERSION
+our $VERSION= 'v0.1.0'; # VERSION
 
 1;
 __END__
