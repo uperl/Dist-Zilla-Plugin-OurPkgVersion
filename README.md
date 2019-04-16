@@ -152,6 +152,15 @@ becomes
     a warning when using [Dist::Zilla::Plugin::VersionFromMainModule](https://metacpan.org/pod/Dist::Zilla::Plugin::VersionFromMainModule) to
     obtain the version number instead of the `dist.ini` file.
 
+- overwrite
+
+    When enabled, this option causes any match of the `# VERSION` comment
+    to first check for an existing `our $VERSION = ...;` on the same line,
+    and if found, overwrite the value in the existing statement. (the comment
+    still gets modified for trial releases)
+
+    Currently, the value must be a single Perl token such as a string or number.
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
@@ -164,6 +173,7 @@ feature.
 # CONTRIBUTORS
 
 - Alexandr Ciornii <alexchorny@gmail.com>
+- Michael Jemmeson <mjemmeson@cpan.org>
 - Stephan Loyd <stephanloyd9@gmail.com>
 - Alexei Znamensky <russoz@cpan.org>
 - Christian Walde <walde.christian@googlemail.com>
@@ -173,7 +183,7 @@ feature.
 - Graham Ollis <plicease@cpan.org>
 - Graham✈️✈️ <plicease@cpan.org>
 - Ian Sealy <git@iansealy.com>
-- Michael Jemmeson <mjemmeson@cpan.org>
+- Michael Conrad <mike@nrdvana.net>
 
 # AUTHORS
 
