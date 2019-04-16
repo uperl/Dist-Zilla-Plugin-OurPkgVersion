@@ -1,10 +1,6 @@
-# NAME
+# Dist::Zilla::Plugin::OurPkgVersion [![Build Status](https://secure.travis-ci.org/plicease/Dist-Zilla-Plugin-OurPkgVersion.png)](http://travis-ci.org/plicease/Dist-Zilla-Plugin-OurPkgVersion)
 
-Dist::Zilla::Plugin::OurPkgVersion - No line insertion and does Package version with our
-
-# VERSION
-
-version 0.14
+No line insertion and does Package version with our
 
 # SYNOPSIS
 
