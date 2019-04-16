@@ -110,7 +110,7 @@ END
 
 =cut
 
-our $VERSION= ''; our $VERSION = '0.1.0'; # VERSION
+our $VERSION = ''; our $VERSION = '0.1.0'; # VERSION
 
 1;
 __END__

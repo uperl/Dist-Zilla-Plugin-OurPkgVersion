@@ -12,11 +12,11 @@ END
 
 =cut
 
-our $VERSION= ''; # VERSION
+our $VERSION = ''; # VERSION
 
 BEGIN { our $VERSION= 0; } # VERSION
 
-our $FOO= 1; our $VERSION= 0; our $BAR= 2; # VERSION
+our $FOO = 1; our $VERSION=0; our $BAR = 2; # VERSION
 
 1;
 __END__

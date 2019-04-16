@@ -11,7 +11,7 @@ END
 
 =cut
 
-our $VERSION= ''; # VERSION
+our $VERSION = ''; # VERSION
 
 1;
 __END__

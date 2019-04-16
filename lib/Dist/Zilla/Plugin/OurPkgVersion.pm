@@ -89,7 +89,7 @@ sub munge_file {
 	if ( ref($comments) eq 'ARRAY' ) {
 		foreach ( @{ $comments } ) {
 			if ( /$version_regex/xms ) {
-				my ( $ws, $comment ) =  ( $1, $2 );
+				my ( $ws, $comment ) = ( $1, $2 );
 				$comment =~ s/(?=\bVERSION\b)/TRIAL /x if $self->zilla->is_trial;
 				my $code
 						= "$ws"
@@ -101,18 +101,18 @@ sub munge_file {
 				# existing "our $VERSION=...;", then find the other tokens from this line, looking
 				# for our $VERSION = $VALUE.  If found, edit only the VALUE.
 				if ( $self->overwrite && !$_->line ) {
-					my $line_no= $_->line_number;
-					my $nodes= $doc->find( sub { $_[1]->line_number == $line_no } );
-					my $version_value_token= $nodes && $self->_identify_version_value_token(@$nodes);
+					my $line_no = $_->line_number;
+					my $nodes = $doc->find( sub { $_[1]->line_number == $line_no } );
+					my $version_value_token = $nodes && $self->_identify_version_value_token(@$nodes);
 					if ( $version_value_token ) {
 						$version_value_token->set_content(qq{'$version'});
-						$code= $ws . $comment;
+						$code = $ws . $comment;
 						$munged_version++;
 					}
 				}
 				if ( $version =~ /_/ && $self->underscore_eval_version ) {
-					my $eval= "\$VERSION = eval \$VERSION;";
-					$code.= $_->line? "$eval\n" : "\n$eval";
+					my $eval = "\$VERSION = eval \$VERSION;";
+					$code .= $_->line? "$eval\n" : "\n$eval";
 				}
 				$_->set_content($code);
 				$munged_version++;
@@ -134,28 +134,29 @@ sub munge_file {
 }
 
 sub _identify_version_value_token {
-	my $self= shift;
+	my ( $self, @tokens ) = @_;
 	my $val_tok;
-	my @want= ('our', '$VERSION', '=', undef, ';');
-	my $i= 0;
-	for (@_) {
+	my @want = ('our', '$VERSION', '=', undef, ';');
+	my $i = 0;
+	for ( @tokens ) {
 		next if $_->isa('PPI::Token::Whitespace');
 		# If the next thing we want is "undef", this is where we capture the value token.
 		if (!defined $want[$i]) {
-			$val_tok= $_;
+			$val_tok = $_;
 			++$i;
 		}
 		# Else if the token matches the current step in the sequence, advance the sequence
 		# If sequence completely matched, return.
 		elsif ($want[$i] eq $_->content) {
 			++$i;
-			return $val_tok unless $i < $#want;
+			return $val_tok if $i >= $#want;
 		}
 		# A mismatch restarts the search
 		elsif ($i) {
-			$i= 0;
+			$i = 0;
 		}
 	}
+	return; # no match
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -315,6 +316,15 @@ of the generated Perl module or source, and thus optional.
 Set to true to ignore the main module in the distribution. This prevents
 a warning when using L<Dist::Zilla::Plugin::VersionFromMainModule> to
 obtain the version number instead of the C<dist.ini> file.
+
+=item overwrite
+
+When enabled, this option causes any match of the C<< # VERSION >> comment
+to first check for an existing C<< our $VERSION = ...; >> on the same line,
+and if found, overwrite the value in the existing statement. (the comment
+still gets modified for trial releases)
+
+Currently, the value must be a single Perl token such as a string or number.
 
 =back
 

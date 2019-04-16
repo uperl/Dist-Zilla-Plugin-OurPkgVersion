@@ -32,11 +32,11 @@ END
 
 =cut
 
-our $VERSION= 'v0.1.0'; # VERSION
+our $VERSION = 'v0.1.0'; # VERSION
 
 BEGIN { our $VERSION= 'v0.1.0'; } # VERSION
 
-our $FOO= 1; our $VERSION= 'v0.1.0'; our $BAR= 2; # VERSION
+our $FOO = 1; our $VERSION='v0.1.0'; our $BAR = 2; # VERSION
 
 1;
 __END__
