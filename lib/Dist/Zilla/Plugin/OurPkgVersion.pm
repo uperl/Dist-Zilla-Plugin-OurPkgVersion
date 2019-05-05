@@ -28,6 +28,12 @@ has underscore_eval_version => (
   default => 0,
 );
 
+has semantic_version => (
+  is      => 'ro',
+  isa     => 'Bool',
+  default => 0,
+);
+
 has skip_main_module => (
   is      => 'ro',
   isa     => 'Int',
@@ -50,6 +56,18 @@ sub munge_files {
 	return;
 }
 
+sub BUILD {
+	my $self = shift;
+
+	if ($self->underscore_eval_version && $self->semantic_version) {
+		confess 'You cannot setup both underscore_eval_version and semantic_version';
+	}
+
+	confess 'invalid characters in version'
+		unless LaxVersionStr->check( $self->zilla->version );  ## no critic (Modules::RequireExplicitInclusion)
+
+}
+
 sub munge_file {
 	my ( $self, $file ) = @_;
 
@@ -59,10 +77,6 @@ sub munge_file {
 	}
 
 	my $version = $self->zilla->version;
-
-	confess 'invalid characters in version'
-		unless LaxVersionStr->check( $version );  ## no critic (Modules::RequireExplicitInclusion)
-
 	my $doc = $self->ppi_document_for_file($file);
 
 	return unless defined $doc;
@@ -92,11 +106,17 @@ sub munge_file {
 				my ( $ws, $comment ) = ( $1, $2 );
 				$comment =~ s/(?=\bVERSION\b)/TRIAL /x if $self->zilla->is_trial;
 				my $code
-						= "$ws"
-						. q{our $VERSION = '}
+					= "$ws"
+			  		. q{our $VERSION = '}
 						. $version
 						. qq{'; $comment}
 						;
+
+				if ( $self->semantic_version ) {
+				  confess 'Invalid semantic version syntax declaration in INI file' unless ( $version =~ /^v\d+\.\d+\.\d+$/ );
+					$code = "use version;\n" . $code;
+				}
+
 				# If the comment is not a whole-line comment, and if the user wants to overwrite
 				# existing "our $VERSION=...;", then find the other tokens from this line, looking
 				# for our $VERSION = $VALUE.  If found, edit only the VALUE.
@@ -110,10 +130,12 @@ sub munge_file {
 						$munged_version++;
 					}
 				}
+
 				if ( $version =~ /_/ && $self->underscore_eval_version ) {
 					my $eval = "\$VERSION = eval \$VERSION;";
 					$code .= $_->line? "$eval\n" : "\n$eval";
 				}
+
 				$_->set_content($code);
 				$munged_version++;
 			}
@@ -285,7 +307,7 @@ the number of files to search to only be modules and executables.
 
 =item munge_file
 
-tells which files to munge, see L<Dist::Zilla::Role::FileMunger>
+tells which files to munge, see L<Dist::Zilla::Role::FileMunger>.
 
 =item finder
 
@@ -306,10 +328,25 @@ files are properly marked as executables for the installer.
 For version numbers that have an underscore in them, add this line
 immediately after the our version assignment:
 
- $VERSION = eval $VERSION;
+	$VERSION = eval $VERSION;
 
 This is arguably the correct thing to do, but changes the line numbering
 of the generated Perl module or source, and thus optional.
+
+=item semantic_version
+
+Setting this property to "true" (1) will set the version of the
+module/distribution to properly use semantic versioning. It will also expect
+that you setup C<version> with a v-string, without adding quotes. For example:
+
+	version = v0.0.1
+
+Beware you can't setup both C<underscore_eval_version> and C<semantic_version>
+since both are mutually exclusive: if you try, your code is going to C<die>.
+
+For more details, check
+L<this blog|https://weblog.bulknews.net/how-to-correctly-use-semantic-version-vx-y-z-in-perl-modules-eb08568ab911>
+for more details about using semantic version with Perl.
 
 =item skip_main_module
 
