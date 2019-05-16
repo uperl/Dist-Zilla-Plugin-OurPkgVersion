@@ -113,6 +113,10 @@ becomes
 
 # METHODS
 
+- BUILD
+
+    Provides validations after object creation.
+
 - munge\_files
 
     Override the default provided by [Dist::Zilla::Role::FileMunger](https://metacpan.org/pod/Dist::Zilla::Role::FileMunger) to limit
@@ -120,7 +124,7 @@ becomes
 
 - munge\_file
 
-    tells which files to munge, see [Dist::Zilla::Role::FileMunger](https://metacpan.org/pod/Dist::Zilla::Role::FileMunger)
+    tells which files to munge, see [Dist::Zilla::Role::FileMunger](https://metacpan.org/pod/Dist::Zilla::Role::FileMunger).
 
 - finder
 
@@ -137,10 +141,25 @@ becomes
     For version numbers that have an underscore in them, add this line
     immediately after the our version assignment:
 
-        $VERSION = eval $VERSION;
+            $VERSION = eval $VERSION;
 
     This is arguably the correct thing to do, but changes the line numbering
     of the generated Perl module or source, and thus optional.
+
+- semantic\_version
+
+    Setting this property to "true" (1) will set the version of the
+    module/distribution to properly use semantic versioning. It will also expect
+    that you setup `version` with a v-string, without adding quotes. For example:
+
+            version = v0.0.1
+
+    Beware you can't setup both `underscore_eval_version` and `semantic_version`
+    since both are mutually exclusive: if you try, your code is going to `die`.
+
+    For more details, check
+    [this blog](https://weblog.bulknews.net/how-to-correctly-use-semantic-version-vx-y-z-in-perl-modules-eb08568ab911)
+    for more details about using semantic version with Perl.
 
 - skip\_main\_module
 
@@ -168,9 +187,11 @@ feature.
 
 # CONTRIBUTORS
 
-- Alexandr Ciornii <alexchorny@gmail.com>
+- Alceu Rodrigues de Freitas Junior <arfreitas@cpan.org>
+- Michael Conrad <mike@nrdvana.net>
 - Michael Jemmeson <mjemmeson@cpan.org>
 - Stephan Loyd <stephanloyd9@gmail.com>
+- Alexandr Ciornii <alexchorny@gmail.com>
 - Alexei Znamensky <russoz@cpan.org>
 - Christian Walde <walde.christian@googlemail.com>
 - Christopher J. Madsen <perl@cjmweb.net>
@@ -179,7 +200,6 @@ feature.
 - Graham Ollis <plicease@cpan.org>
 - Graham✈️✈️ <plicease@cpan.org>
 - Ian Sealy <git@iansealy.com>
-- Michael Conrad <mike@nrdvana.net>
 
 # AUTHORS
 

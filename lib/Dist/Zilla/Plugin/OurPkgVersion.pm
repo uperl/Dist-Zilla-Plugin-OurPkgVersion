@@ -24,7 +24,7 @@ use namespace::autoclean;
 
 has underscore_eval_version => (
   is      => 'ro',
-  isa     => 'Int',
+  isa     => 'Bool',
   default => 0,
 );
 
@@ -36,13 +36,13 @@ has semantic_version => (
 
 has skip_main_module => (
   is      => 'ro',
-  isa     => 'Int',
+  isa     => 'Bool',
   default => 0,
 );
 
 has overwrite => (
   is      => 'ro',
-  isa     => 'Int',
+  isa     => 'Bool',
   default => 0,
 );
 
@@ -66,6 +66,7 @@ sub BUILD {
 	confess 'invalid characters in version'
 		unless LaxVersionStr->check( $self->zilla->version );  ## no critic (Modules::RequireExplicitInclusion)
 
+	return 1;
 }
 
 sub munge_file {
@@ -113,7 +114,7 @@ sub munge_file {
 						;
 
 				if ( $self->semantic_version ) {
-				  confess 'Invalid semantic version syntax declaration in INI file' unless ( $version =~ /^v\d+\.\d+\.\d+$/ );
+				  confess 'Invalid semantic version syntax declaration in INI file' unless ( $version =~ /^v\d+\.\d+\.\d+$/x );
 					$code = "use version;\n" . $code;
 				}
 
@@ -299,6 +300,10 @@ becomes
 =head1 METHODS
 
 =over
+
+=item BUILD
+
+Provides validations after object creation.
 
 =item munge_files
 
