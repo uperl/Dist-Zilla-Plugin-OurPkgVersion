@@ -187,10 +187,12 @@ feature.
 
 # CONTRIBUTORS
 
-- Alceu Rodrigues de Freitas Junior <arfreitas@cpan.org>
+- Alceu Rodrigues de Freitas Junior <alceu.junior@quintoandar.com.br>
+- Ian Sealy <git@iansealy.com>
 - Michael Conrad <mike@nrdvana.net>
 - Michael Jemmeson <mjemmeson@cpan.org>
 - Stephan Loyd <stephanloyd9@gmail.com>
+- Alceu Rodrigues de Freitas Junior <arfreitas@cpan.org>
 - Alexandr Ciornii <alexchorny@gmail.com>
 - Alexei Znamensky <russoz@cpan.org>
 - Christian Walde <walde.christian@googlemail.com>
@@ -199,7 +201,6 @@ feature.
 - Graham Ollis <perl@wdlabs.com>
 - Graham Ollis <plicease@cpan.org>
 - Graham✈️✈️ <plicease@cpan.org>
-- Ian Sealy <git@iansealy.com>
 
 # AUTHORS
 
