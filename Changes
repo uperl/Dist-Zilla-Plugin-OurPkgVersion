@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-OurPkgVersion
 
 {{$NEXT}}
 
+0.19      2019-05-24
+  - Fix regression related to version_provider plugins (gh#15, gh#16)
+
 0.18      2019-05-22
   - Fix git deploy snafoo (plicease--)
 
