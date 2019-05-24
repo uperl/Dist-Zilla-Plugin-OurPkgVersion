@@ -63,9 +63,6 @@ sub BUILD {
 		confess 'You cannot setup both underscore_eval_version and semantic_version';
 	}
 
-	confess 'invalid characters in version'
-		unless LaxVersionStr->check( $self->zilla->version );  ## no critic (Modules::RequireExplicitInclusion)
-
 	return 1;
 }
 
@@ -78,6 +75,10 @@ sub munge_file {
 	}
 
 	my $version = $self->zilla->version;
+
+	confess 'invalid characters in version'
+		unless LaxVersionStr->check( $version );  ## no critic (Modules::RequireExplicitInclusion)
+
 	my $doc = $self->ppi_document_for_file($file);
 
 	return unless defined $doc;
