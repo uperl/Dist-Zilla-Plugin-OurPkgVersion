@@ -16,8 +16,8 @@ script:
 
 jobs:
   include:
+    - env: CIP_TAG=5.31
     - env: CIP_TAG=5.30 CIP_ENV=AUTHOR_TESTING=1
-    - env: CIP_TAG=5.29
     - env: CIP_TAG=5.28
     - env: CIP_TAG=5.26
     - env: CIP_TAG=5.24
