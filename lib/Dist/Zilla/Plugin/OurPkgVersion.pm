@@ -380,7 +380,7 @@ Currently, the value must be a single Perl token such as a string or number.
 =item no_critic
 
 When C<underscore_eval_version> is used the generated code for dev versions
-may not technically be L<Perl::Critic> complient due to string eval, but is
+may not technically be L<Perl::Critic> compliant due to string eval, but is
 nevertheless pretty safe.  This option will add the appropriate C<no critic>
 directive to save you the hassle.
 
