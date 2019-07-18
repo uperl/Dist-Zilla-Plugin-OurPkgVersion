@@ -72,7 +72,7 @@ sub BUILD {
 	return 1;
 }
 
-sub munge_file {
+sub munge_file {  ## no critic (Subroutines::ProhibitExcessComplexity)
 	my ( $self, $file ) = @_;
 
 	if ( $file->name =~ m/\.pod$/ixms ) {
