@@ -46,6 +46,12 @@ has overwrite => (
   default => 0,
 );
 
+has no_critic => (
+  is      => 'ro',
+  isa     => 'Bool',
+  default => 0,
+);
+
 sub munge_files {
 	my $self = shift;
 
@@ -135,6 +141,8 @@ sub munge_file {
 
 				if ( $version =~ /_/ && $self->underscore_eval_version ) {
 					my $eval = "\$VERSION = eval \$VERSION;";
+					$eval .= " ## no critic (BuiltinFunctions::ProhibitStringyEval)"
+					  if $self->no_critic;
 					$code .= $_->line? "$eval\n" : "\n$eval";
 				}
 
@@ -368,6 +376,13 @@ and if found, overwrite the value in the existing statement. (the comment
 still gets modified for trial releases)
 
 Currently, the value must be a single Perl token such as a string or number.
+
+=item no_critic
+
+When C<underscore_eval_version> is used the generated code for dev versions
+may not technically be L<Perl::Critic> complient due to string eval, but is
+nevertheless pretty safe.  This option will add the appropriate C<no critic>
+directive to save you the hassle.
 
 =back
 

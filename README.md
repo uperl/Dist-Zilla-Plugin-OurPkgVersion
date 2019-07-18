@@ -176,6 +176,13 @@ becomes
 
     Currently, the value must be a single Perl token such as a string or number.
 
+- no\_critic
+
+    When `underscore_eval_version` is used the generated code for dev versions
+    may not technically be [Perl::Critic](https://metacpan.org/pod/Perl::Critic) complient due to string eval, but is
+    nevertheless pretty safe.  This option will add the appropriate `no critic`
+    directive to save you the hassle.
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
