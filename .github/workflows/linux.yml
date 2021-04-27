@@ -16,19 +16,27 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cip_tag:
-          - "5.33"
-          - "5.32"
-          - "5.30"
-          - "5.28"
-          - "5.26"
-          - "5.24"
-          - "5.22"
-          - "5.20"
+        cip:
+          - tag: "5.33"
+            author_testing: 0
+          - tag: "5.32"
+            author_testing: 1
+          - tag: "5.30"
+            author_testing: 0
+          - tag: "5.28"
+            author_testing: 0
+          - tag: "5.26"
+            author_testing: 0
+          - tag: "5.24"
+            author_testing: 0
+          - tag: "5.22"
+            author_testing: 0
+          - tag: "5.20"
+            author_testing: 0
 
     env:
-      CIP_TAG: ${{ matrix.cip_tag }}
-      CIP_ENV: AUTHOR_TESTING=1
+      CIP_TAG: ${{ matrix.cip.tag }}
+      CIP_ENV: AUTHOR_TESTING=${{ matrix.cip.author_testing }}
 
     steps:
       - uses: actions/checkout@v2
