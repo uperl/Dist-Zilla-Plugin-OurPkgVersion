@@ -1,4 +1,4 @@
-# Dist::Zilla::Plugin::OurPkgVersion ![linux](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/windows/badge.svg) ![cygwin](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/cygwin/badge.svg) ![msys2-mingw](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/msys2-mingw/badge.svg)
+# Dist::Zilla::Plugin::OurPkgVersion ![linux](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/windows/badge.svg) ![cygwin](https://github.com/uperl/Dist-Zilla-Plugin-OurPkgVersion/workflows/cygwin/badge.svg)
 
 No line insertion and does Package version with our
 
@@ -250,7 +250,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2021 by Caleb Cushing.
+This software is Copyright (c) 2022 by Caleb Cushing.
 
 This is free software, licensed under:
 
